@@ -1,0 +1,20 @@
+name: Smoke Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Do something trivial
+        run: echo 'actions smoke test ok'
+      - name: Write one-line artifact file
+        run: echo 'actions smoke test ok' > smoke.txt
+      - name: Upload small artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-artifact
+          path: smoke.txt
